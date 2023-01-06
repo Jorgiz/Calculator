@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://8fqu6vw0ucpa"]
+[gd_scene load_steps=3 format=3 uid="uid://8fqu6vw0ucpa"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_xhsb6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgb6i"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_xhsb6")
 
 [node name="Layout" type="Control" parent="."]
 layout_mode = 3
