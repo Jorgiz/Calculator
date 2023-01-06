@@ -1,8 +1,105 @@
-[gd_scene load_steps=3 format=3 uid="uid://8fqu6vw0ucpa"]
+[gd_scene load_steps=36 format=3 uid="uid://8fqu6vw0ucpa"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_xhsb6"]
+[ext_resource type="Theme" uid="uid://bhwd54817a3lw" path="res://btn_theme.tres" id="2_41qny"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgb6i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8ke4i"]
+action = &"one"
+
+[sub_resource type="Shortcut" id="Shortcut_p20lx"]
+events = [SubResource("InputEventAction_8ke4i")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_wlwa1"]
+action = &"two"
+
+[sub_resource type="Shortcut" id="Shortcut_bo7ig"]
+events = [SubResource("InputEventAction_wlwa1")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_p8phr"]
+action = &"three"
+
+[sub_resource type="Shortcut" id="Shortcut_xifve"]
+events = [SubResource("InputEventAction_p8phr")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_0atvh"]
+action = &"four"
+
+[sub_resource type="Shortcut" id="Shortcut_bxd06"]
+events = [SubResource("InputEventAction_0atvh")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_vkb0t"]
+action = &"five"
+
+[sub_resource type="Shortcut" id="Shortcut_chea1"]
+events = [SubResource("InputEventAction_vkb0t")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_gkerb"]
+action = &"six"
+
+[sub_resource type="Shortcut" id="Shortcut_e0anw"]
+events = [SubResource("InputEventAction_gkerb")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_ni0v4"]
+action = &"seven"
+
+[sub_resource type="Shortcut" id="Shortcut_xaoiv"]
+events = [SubResource("InputEventAction_ni0v4")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_obids"]
+action = &"eight"
+
+[sub_resource type="Shortcut" id="Shortcut_n5pvm"]
+events = [SubResource("InputEventAction_obids")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_bsxjr"]
+action = &"nine"
+
+[sub_resource type="Shortcut" id="Shortcut_sam0t"]
+events = [SubResource("InputEventAction_bsxjr")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_f4g3k"]
+action = &"dot"
+
+[sub_resource type="Shortcut" id="Shortcut_wnbga"]
+events = [SubResource("InputEventAction_f4g3k")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_siqta"]
+action = &"zero"
+
+[sub_resource type="Shortcut" id="Shortcut_j0gpx"]
+events = [SubResource("InputEventAction_siqta")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_jmv03"]
+action = &"equals"
+
+[sub_resource type="Shortcut" id="Shortcut_4p4nq"]
+events = [SubResource("InputEventAction_jmv03")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_k5dia"]
+action = &"plus"
+
+[sub_resource type="Shortcut" id="Shortcut_3tvx7"]
+events = [SubResource("InputEventAction_k5dia")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_20rqy"]
+action = &"minus"
+
+[sub_resource type="Shortcut" id="Shortcut_y7luv"]
+events = [SubResource("InputEventAction_20rqy")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_1dq78"]
+action = &"times"
+
+[sub_resource type="Shortcut" id="Shortcut_q3x4a"]
+events = [SubResource("InputEventAction_1dq78")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_dcc6h"]
+action = &"by"
+
+[sub_resource type="Shortcut" id="Shortcut_u2sgf"]
+events = [SubResource("InputEventAction_dcc6h")]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xhsb6")
@@ -29,10 +126,22 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_wgb6i")
 
-[node name="ColorRect" type="ColorRect" parent="Layout/VBoxContainer"]
+[node name="Display" type="ColorRect" parent="Layout/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-color = Color(0.121569, 0.133333, 0.188235, 1)
+color = Color(0.2, 0.196078, 0.243137, 1)
+
+[node name="Text" type="Label" parent="Layout/VBoxContainer/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "press a button"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
 
 [node name="HSeparator" type="HSeparator" parent="Layout/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -47,88 +156,150 @@ layout_mode = 2
 size_flags_horizontal = 4
 columns = 3
 
-[node name="Button" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
+[node name="Button1" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_p20lx")
 text = "1"
 
 [node name="Button2" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_bo7ig")
 text = "2"
 
 [node name="Button3" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_xifve")
 text = "3"
 
 [node name="Button4" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_bxd06")
 text = "4"
 
 [node name="Button5" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_chea1")
 text = "5"
 
 [node name="Button6" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_e0anw")
 text = "6"
 
 [node name="Button7" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_xaoiv")
 text = "7"
 
 [node name="Button8" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_n5pvm")
 text = "8"
 
 [node name="Button9" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_sam0t")
 text = "9"
 
-[node name="Button10" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
+[node name="Dot" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-text = "="
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_wnbga")
+text = "."
 
-[node name="Button11" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
+[node name="Button0" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_j0gpx")
 text = "0"
 
-[node name="Button12" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
+[node name="Equals" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Números"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-text = ","
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_4p4nq")
+text = "="
 
 [node name="Operadores" type="GridContainer" parent="Layout/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
+[node name="PlusBTN" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_3tvx7")
 text = "+"
 
-[node name="Button2" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
+[node name="MinusBTN" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_y7luv")
 text = "-"
 
-[node name="Button3" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
+[node name="TimesBTN" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_q3x4a")
 text = "*"
 
-[node name="Button4" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
+[node name="ByBTN" type="Button" parent="Layout/VBoxContainer/HBoxContainer/Operadores"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+theme = ExtResource("2_41qny")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_u2sgf")
 text = "/"
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(168, 416)
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button8" to="." method="_on_button_8_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button9" to="." method="_on_button_9_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Dot" to="." method="_on_dot_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Button0" to="." method="_on_button_0_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Números/Equals" to="." method="_on_equals_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Operadores/PlusBTN" to="." method="_on_plus_btn_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Operadores/MinusBTN" to="." method="_on_minus_btn_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Operadores/TimesBTN" to="." method="_on_times_btn_pressed"]
+[connection signal="pressed" from="Layout/VBoxContainer/HBoxContainer/Operadores/ByBTN" to="." method="_on_by_btn_pressed"]
