@@ -2,156 +2,207 @@ extends Node2D
 
 @onready var display = $Layout/VBoxContainer/Display/Text
 
-var current_value: String
-var operator: String
-var previous_value: String
 
-var new_operation = false
+var value1_txt: String = ""
+var operator: String = ""
+var value2_txt: String = ""
 
+var value1: float
+var value2: float
 
-func _add(a: float, b: float) -> float:
-	return a + b
+var value1_is_empty: bool
+var value2_is_empty: bool
 
-
-func _subtract(a: float, b: float) -> float:
-	return a - b
-
-
-func _multiply(a: float, b: float) -> float:
-	return a * b
+var new_operation := false
 
 
-func _divide(a: float, b: float) -> float:
-	return a / b
-
-
-func _add_value(value: String) -> void:
+func _add_to_value2(value: String) -> void:
 	if new_operation:
-		current_value = "" + value
+		value1_txt = ""
+		_set_value2("")
+		value2_txt += value
+		value2 = float(value2_txt)
 		new_operation = false
-		return
-	
-	if current_value.length() < 10:
-		current_value += value
+	else:
+		value2_txt += value
+		value2 = float(value2_txt)
 
 
-func _clear_current_value() -> void:
-	if current_value != "":
-		previous_value = current_value
-		current_value = ""
+func _set_value2(value: String) -> void:
+	value2_txt = value
+	value2 = float(value2_txt)
 
 
-func _reset() -> void:
-	new_operation = true if operator != "" else false
-	previous_value = ""
-	operator = ""
+func _check_values() -> void:
+	value1_is_empty = value1_txt == ""
+	value2_is_empty = value2_txt == "" or value2_txt == "+" or value2_txt == "-"
+
+
+func _value2_to_value1() -> void:
+	value1_txt = value2_txt
+	value2_txt = ""
+	value1 = float(value1_txt)
+	value2 = float(value2_txt)
+
+
+func _addition(a: float, b: float) -> void:
+	value1 = a + b
+	value1_txt = str(value1)
+	_set_value2("")
+
+func _multiplication(a: float, b: float) -> void:
+	value1 = a * b
+	value1_txt = str(value1)
+	_set_value2("")
 
 
 func _update_display() -> void:
-	display.text = previous_value + " " + operator + " " + current_value
+	display.text = value1_txt + operator + value2_txt
 
 
 func _on_button_1_pressed() -> void:
-	_add_value("1")
+	_add_to_value2("1")
 	_update_display()
 
 
 func _on_button_2_pressed() -> void:
-	_add_value("2")
+	_add_to_value2("2")
 	_update_display()
 
 
 func _on_button_3_pressed() -> void:
-	_add_value("3")
+	_add_to_value2("3")
 	_update_display()
 
 
 func _on_button_4_pressed() -> void:
-	_add_value("4")
+	_add_to_value2("4")
 	_update_display()
 
 
 func _on_button_5_pressed() -> void:
-	_add_value("5")
+	_add_to_value2("5")
 	_update_display()
 
 
 func _on_button_6_pressed() -> void:
-	_add_value("6")
+	_add_to_value2("6")
 	_update_display()
 
 
 func _on_button_7_pressed() -> void:
-	_add_value("7")
+	_add_to_value2("7")
 	_update_display()
 
 
 func _on_button_8_pressed() -> void:
-	_add_value("8")
+	_add_to_value2("8")
 	_update_display()
 
 
 func _on_button_9_pressed() -> void:
-	_add_value("9")
+	_add_to_value2("9")
 	_update_display()
 
 
 func _on_button_0_pressed() -> void:
-	_add_value("0")
+	_add_to_value2("0")
 	_update_display()
 
 
 func _on_dot_pressed() -> void:
-	_add_value(".")
+	_add_to_value2(".")
 	_update_display()
 
 
-func _on_equals_pressed() -> void:	
-	match operator:
-		"+":
-			current_value = str(
-				_add(float(previous_value), float(current_value))
-			) if current_value != "" else previous_value
-		"-":
-			current_value = str(
-				_subtract(float(previous_value), float(current_value))
-			) if current_value != "" else previous_value
-		"*":
-			current_value = str(
-				_multiply(float(previous_value), float(current_value))
-			) if current_value != "" else previous_value
-		"/":
-			current_value = str(
-				_divide(float(previous_value), float(current_value))
-			) if current_value != "" else previous_value
+func _on_equals_pressed() -> void:
+	_check_values()
 	
-	_reset()
+	if not value1_is_empty and not value2_is_empty:
+		match operator:
+			"*":
+				_multiplication(value1, value2)
+			"/":
+				_multiplication(value1, 1/value2)
+			"":
+				_addition(value1, value2)
+		
+	
+	operator = ""
+	new_operation = true
+	
 	_update_display()
 
 
 func _on_plus_btn_pressed() -> void:
-	_on_equals_pressed()
-	_clear_current_value()
-	operator = "+"
+	_check_values()
+	
+	if value2_is_empty:
+		_set_value2("+")
+		
+	elif value1_is_empty and not value2_is_empty:
+		_value2_to_value1()
+		_set_value2("+")
+		
+	elif not value1_is_empty and not value2_is_empty:
+		_on_equals_pressed()
+		_set_value2("+")
+	
+	new_operation = false
 	_update_display()
 
 
 func _on_minus_btn_pressed() -> void:
-	_on_equals_pressed()
-	_clear_current_value()
-	operator = "-"
+	_check_values()
+	
+	if value2_is_empty:
+		_set_value2("-")
+		
+	elif value1_is_empty and not value2_is_empty:
+		_value2_to_value1()
+		_set_value2("-")
+		
+	elif not value1_is_empty and not value2_is_empty:
+		_on_equals_pressed()
+		_set_value2("-")
+	
+	new_operation = false
 	_update_display()
 
 
 func _on_times_btn_pressed() -> void:
-	_on_equals_pressed()
-	_clear_current_value()
-	operator = "*"
+	_check_values()
+	
+	if not value1_is_empty and value2_is_empty:
+		operator = "*" if operator != "*" else ""
+	
+	elif value1_is_empty and not value2_is_empty:
+		_value2_to_value1()
+		_set_value2("")
+		operator = "*" if operator != "*" else ""
+	
+	elif not value1_is_empty and not value2_is_empty:
+		_on_equals_pressed()
+		operator = "*" if operator != "*" else ""
+	
+	new_operation = false
 	_update_display()
 
 
 func _on_by_btn_pressed() -> void:
-	_on_equals_pressed()
-	_clear_current_value()
-	operator = "/"
+	_check_values()
+	
+	if not value1_is_empty and value2_is_empty:
+		operator = "/" if operator != "/" else ""
+	
+	elif value1_is_empty and not value2_is_empty:
+		_value2_to_value1()
+		_set_value2("")
+		operator = "/" if operator != "/" else ""
+	
+	elif not value1_is_empty and not value2_is_empty:
+		_on_equals_pressed()
+		operator = "/" if operator != "/" else ""
+	
+	new_operation = false
 	_update_display()
