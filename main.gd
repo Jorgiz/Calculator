@@ -111,11 +111,11 @@ func _on_equals_pressed() -> void:
 		"+":
 			current_value = str(
 				_add(float(previous_value), float(current_value))
-				)
+			) if current_value != "" else previous_value
 		"-":
 			current_value = str(
 				_subtract(float(previous_value), float(current_value))
-				)
+			) if current_value != "" else previous_value
 		"*":
 			current_value = str(
 				_multiply(float(previous_value), float(current_value))
